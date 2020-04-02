@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block body %}
+	<div class="container">
+		<div class="heading mt-4">
+			<h2>Dashboard</h2>
+		</div><br>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="sub-head mt-4 mb-2">
+					<h4>All Questions</h4>
+				</div><br>
+				{% for question in all_questions %}
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">{{ question.question }}</h5>
+							<p class="card-text">Asked by {{ question.author }} | {{ question.timestamp }}</p>
+							<a href="/discussion/{{question.id}}/" class="btn btn-primary">Answer</a>
+						</div>
+					</div><br>
+				{% endfor %}
+			</div>
+			<div class="col-md-6">
+				<div class="sub-head mt-4 mb-2">
+					<h4>All Answers</h4>
+				</div><br>
+				{% for answer in all_answers %}
+					<div class="card">
+						<div class="card-body">
+							<h6 class="card-title">{{ answer.answer }}</h6>
+							<p class="card-text">Answered by {{ answer.author }} | {{ answer.timestamp }} | Upvotes: {{ answer.upvotes }}</p>
+							<a href="/upvote/{{answer.id}}/" class="btn btn-success">Upvote</a>
+						</div>
+					</div><br>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
